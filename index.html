@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEVENANA | Banana Pop</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+:root{--yellow:#ffd43b;--orange:#ff8c24;--dark:#302013;--cream:#fffaf0;--green:#287c48;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--dark);overflow-x:hidden;}
+nav{position:sticky;top:0;z-index:1000;background:rgba(255,250,240,.94);backdrop-filter:blur(15px);display:flex;justify-content:space-between;align-items:center;padding:17px 8%;box-shadow:0 3px 20px #0000000b;}
+.logo{font-size:27px;font-weight:900;color:#e98216;letter-spacing:2px;}
+.logo span{color:#3d8c42;}
+.navlinks{display:flex;align-items:center;gap:28px;}
+.navlinks a{text-decoration:none;color:var(--dark);font-size:14px;font-weight:600;}
+.navlinks a:hover{color:var(--orange);}
+.cart-button{background:var(--yellow);border:0;padding:11px 18px;border-radius:30px;font-weight:700;cursor:pointer;}
+.hero{min-height:620px;padding:85px 9%;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:35px;background:radial-gradient(circle at 80% 20%,#ffe89a 0,transparent 30%),linear-gradient(135deg,#fff7dc,#ffe7a5);overflow:hidden;}
+.tag{display:inline-block;background:#fff;padding:9px 18px;border-radius:30px;color:#d77a13;font-size:13px;font-weight:700;margin-bottom:22px;}
+.hero h1{font-size:clamp(45px,6vw,75px);line-height:1.12;font-weight:900;letter-spacing:-3px;}
+.hero h1 span{color:#ed8a1d;}
+.hero p{margin:23px 0;max-width:500px;line-height:1.9;color:#6b5845;}
+.primary{display:inline-block;text-decoration:none;background:var(--dark);color:white;padding:15px 27px;border-radius:35px;font-weight:700;}
+.primary:hover{background:#e98216;transform:translateY(-4px);}
+.hero-art{position:relative;display:flex;align-items:center;justify-content:center;min-height:400px;}
+.food-circle{width:min(360px,80vw);height:min(360px,80vw);border-radius:50%;overflow:hidden;box-shadow:0 25px 65px #d68c3155;animation:float 4s ease-in-out infinite;border:8px solid #fff;background:#fff;}
+.food-circle img{width:100%;height:100%;object-fit:cover;}
+.food-circle::after{content:"";position:absolute;width:390px;height:390px;border:2px dashed #e5a13b;border-radius:50%;animation:spin 30s linear infinite;}
+.floating{position:absolute;background:white;padding:13px 19px;border-radius:18px;box-shadow:0 10px 30px #00000013;font-size:13px;font-weight:700;z-index:2;}
+.f1{top:45px;right:0;} .f2{bottom:55px;left:0;}
+section{padding:85px 9%;}
+.section-title{text-align:center;margin-bottom:45px;}
+.section-title small{color:#e98216;font-weight:800;letter-spacing:3px;}
+.section-title h2{font-size:clamp(29px,4vw,42px);margin:10px 0;font-weight:900;}
+.section-title p{color:#806d59;font-size:14px;}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px;}
+.product-card{background:white;border-radius:25px;padding:25px;box-shadow:0 10px 35px #563a160d;border:1px solid #f4eadb;}
+.product-card:hover{transform:translateY(-8px);}
+.product-image{height:230px;border-radius:20px;overflow:hidden;margin-bottom:22px;background:#fff1c4;}
+.product-image img{width:100%;height:100%;object-fit:cover;display:block;}
+.product-card h3{font-size:21px;}
+.product-card p{color:#806d59;font-size:13px;line-height:1.8;margin:10px 0;}
+.price{color:#e98216;font-size:23px;font-weight:900;margin:15px 0;}
+.product-card button{border:none;background:var(--yellow);padding:12px 22px;border-radius:30px;font-weight:800;cursor:pointer;}
+.builder{background:#fff0c5;}
+.order-panel{background:white;max-width:750px;margin:auto;padding:35px;border-radius:25px;box-shadow:0 15px 45px #0000000b;}
+.form-group{margin-bottom:22px;}
+.form-group label{display:block;font-weight:700;font-size:14px;margin-bottom:9px;}
+select,input,textarea{width:100%;padding:14px;border:1px solid #e9dfce;background:#fffdf8;border-radius:12px;outline:none;font-size:14px;}
+.options{display:flex;flex-wrap:wrap;gap:10px;}
+.option{display:flex;align-items:center;gap:7px;background:#fff7e4;padding:10px 13px;border-radius:12px;font-size:13px;cursor:pointer;}
+.option input{width:auto;accent-color:#e98216;}
+.price-preview{padding:18px;border-radius:15px;background:#fff3d0;display:flex;justify-content:space-between;align-items:center;margin:25px 0;}
+.price-preview strong{color:#e98216;font-size:24px;}
+.add-button{width:100%;border:0;background:#e98216;color:white;padding:16px;border-radius:30px;font-size:15px;font-weight:800;cursor:pointer;}
+.cart-section{background:#fffaf0;}
+.cart-box{max-width:750px;margin:auto;padding:30px;background:white;border-radius:25px;box-shadow:0 10px 35px #0000000b;}
+.cart-item{display:flex;justify-content:space-between;gap:15px;padding:17px 0;border-bottom:1px solid #eee5d8;font-size:14px;}
+.cart-item button{border:0;color:#e54a37;background:none;cursor:pointer;font-weight:700;}
+.cart-total{display:flex;justify-content:space-between;padding:22px 0;font-weight:900;font-size:19px;}
+.checkout{width:100%;padding:16px;background:#25b75a;border:0;color:white;border-radius:30px;font-weight:800;font-size:15px;cursor:pointer;}
+.empty{text-align:center;padding:25px;color:#998976;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.feature{text-align:center;padding:25px;background:white;border-radius:20px;box-shadow:0 8px 30px #00000009;}
+.feature div{font-size:42px;margin-bottom:15px;}
+.feature h3{font-size:16px;margin-bottom:8px;}
+.feature p{font-size:13px;color:#806d59;line-height:1.8;}
+footer{padding:25px;background:#24180f;color:#cbbba9;text-align:center;font-size:12px;}
+.reveal{opacity:0;transform:translateY(30px);transition:all .8s ease;}
+.reveal.show{opacity:1;transform:translateY(0);}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg);}50%{transform:translateY(-20px) rotate(4deg);}}
+@keyframes spin{to{transform:rotate(360deg);}}
+@media(max-width:800px){nav{padding:15px 5%;}.navlinks{gap:12px;}.navlinks a{font-size:11px;}.logo{font-size:21px;}.hero{grid-template-columns:1fr;text-align:center;padding:65px 7%;}.hero p{margin:20px auto;}.products{grid-template-columns:1fr;}.features{grid-template-columns:1fr;}}
+@media(max-width:480px){.navlinks a{display:none;}section{padding:65px 6%;}.order-panel,.cart-box{padding:20px;}}
+</style>
+</head>
+<body>
+<nav><div class="logo">SEVEN<span>ANA.</span></div><div class="navlinks"><a href="#home">Beranda</a><a href="#produk">Produk</a><a href="#pesan">Pesan</a><a href="#tentang">Tentang</a><button class="cart-button" onclick="document.getElementById('keranjang').scrollIntoView()">🛒 Keranjang <span id="cartCount">0</span></button></div></nav>
+
+<header class="hero" id="home">
+  <div class="hero-content"><div class="tag">🍌 THE ORIGINAL BANANA POP</div><h1>CRISPY<br>OUTSIDE,<br><span>HAPPY INSIDE!</span></h1><p>Nikmati sensasi pisang crispy yang renyah di luar, lembut di dalam, dengan pilihan saus dan topping favoritmu. Ada juga varian gurih pedas yang bikin ketagihan!</p><a href="#produk" class="primary">Jelajahi Menu →</a></div>
+  <div class="hero-art"><div class="food-circle"><img src="logo.jpeg" alt="Logo SEVENANA"></div><div class="floating f1">✨ Fresh & Crispy</div><div class="floating f2">❤️ Made With Love</div></div>
+</header>
+
+<section id="produk">
+  <div class="section-title reveal"><small>OUR SPECIAL MENU</small><h2>Kenali Menu Kami!</h2><p>Dua pilihan rasa, satu pengalaman yang menyenangkan.</p></div>
+  <div class="products">
+    <div class="product-card reveal">
+      <div class="product-image"><img src="pisang-coklat-keju.jpeg" alt="Banana Pop Crispy Coklat Keju"></div>
+      <h3>Banana Pop Crispy</h3><p>Pisang pilihan yang digoreng hingga renyah, kemudian dipadukan dengan saus Coklat, Stroberi, Vanila, Matcha, Tiramisu dan topping pilihan.</p><div class="price">Rp5.000 – Rp15.000</div><button onclick="chooseProduct('crispy')">Pesan Sekarang →</button>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-image"><img src="pisang-geprek-pedas.jpg" alt="Pisang Geprek Asin Pedas"></div>
+      <h3>Pisang Geprek Asin Pedas</h3><p>Pisang crispy yang digeprek kemudian diberi bumbu asin pedas. Cocok untuk kamu yang menyukai camilan gurih dan pedas.</p><div class="price">Rp5.000 / porsi</div><button onclick="chooseProduct('geprek')">Pesan Sekarang →</button>
+    </div>
+  </div>
+</section>
+
+<section id="tentang" style="background:#fff4d9"><div class="section-title reveal"><small>WHY SEVENANA?</small><h2>Kenapa Harus Sevenana?</h2><p>Bukan sekadar camilan pisang biasa.</p></div><div class="features"><div class="feature reveal"><div>🍌</div><h3>Pisang Pilihan</h3><p>Menggunakan bahan pisang segar dengan proses pengolahan yang memperhatikan kualitas dan kebersihan.</p></div><div class="feature reveal"><div>🍫</div><h3>Bebas Pilih Topping</h3><p>Kombinasikan saus dan topping sesuai selera untuk menciptakan rasa favoritmu.</p></div><div class="feature reveal"><div>💰</div><h3>Harga Bersahabat</h3><p>Nikmati camilan kekinian dengan pilihan harga mulai dari Rp5.000.</p></div></div></section>
+
+<section class="builder" id="pesan"><div class="section-title"><small>MAKE YOUR OWN</small><h2>Buat Pesananmu!</h2><p>Pilih menu dan sesuaikan dengan selera kamu.</p></div>
+  <div class="order-panel">
+    <div class="form-group"><label>1. Pilih Produk</label><select id="product" onchange="updateForm()"><option value="crispy">Banana Pop Crispy</option><option value="geprek">Pisang Geprek Asin Pedas</option></select></div>
+    <div id="crispyOptions">
+      <div class="form-group"><label>2. Pilih Paket Harga</label><select id="package" onchange="updateForm()"><option value="5000">Paket Hemat - Rp5.000 (1 topping)</option><option value="10000">Paket Favorit - Rp10.000 (1 saus + 2 topping)</option><option value="15000">Paket Komplit - Rp15.000 (1 saus + 4 topping)</option></select></div>
+      <div class="form-group" id="sauceGroup"><label>3. Pilih Saus</label><select id="sauce"><option value="Coklat">🍫 Coklat</option><option value="Stroberi">🍓 Stroberi</option><option value="Vanila">🍦 Vanila</option><option value="Matcha">🍵 Matcha</option><option value="Tiramisu">☕ Tiramisu</option></select></div>
+      <div class="form-group"><label id="toppingLabel">4. Pilih 1 Topping</label><div class="options" id="toppings"><label class="option"><input type="checkbox" value="Kacang"> Kacang</label><label class="option"><input type="checkbox" value="Meses"> Meses</label><label class="option"><input type="checkbox" value="Oreo"> Oreo</label><label class="option"><input type="checkbox" value="Keju"> Keju</label><label class="option"><input type="checkbox" value="Coklat"> 🍫 Coklat</label><label class="option"><input type="checkbox" value="Stroberi"> 🍓 Stroberi</label><label class="option"><input type="checkbox" value="Vanila"> 🍦 Vanila</label><label class="option"><input type="checkbox" value="Tiramisu"> ☕ Tiramisu</label><label class="option"><input type="checkbox" value="Matcha"> 🍵 Matcha</label></div></div>
+    </div>
+    <div id="geprekOptions" style="display:none"><div class="form-group"><label>2. Pilih Tingkat Kepedasan</label><select id="spice"><option value="Normal">Normal</option><option value="Sedang">Sedang</option><option value="Pedas">Pedas</option></select></div></div>
+    <div class="form-group"><label>Jumlah Porsi</label><input type="number" id="quantity" min="1" max="100" value="1"></div>
+    <div class="price-preview"><span>Total Harga</span><strong id="preview">Rp5.000</strong></div>
+    <button class="add-button" onclick="addToCart()">+ TAMBAHKAN KE KERANJANG</button>
+  </div>
+</section>
+
+<section class="cart-section" id="keranjang"><div class="section-title"><small>YOUR ORDER</small><h2>Keranjang Belanja 🛒</h2><p>Periksa pesananmu sebelum dikirim.</p></div>
+  <div class="cart-box"><div id="cartItems"><div class="empty">Keranjang masih kosong 🍌</div></div><div class="cart-total"><span>Total Belanja</span><span id="grandTotal">Rp0</span></div>
+  <div class="form-group"><label>Pilih Admin WhatsApp</label><select id="waAdmin"><option value="admin1">Admin 1 - Sevenana</option><option value="admin2">Admin 2 - Sevenana</option><option value="admin3">Admin 3 - Sevenana</option></select></div>
+  <div class="form-group"><label>Nama Pemesan</label><input type="text" id="customer" placeholder="Masukkan nama kamu"></div>
+  <div class="form-group"><label>Alamat Pengantaran / Lokasi Pengambilan</label><textarea id="address" rows="3" placeholder="Masukkan alamat atau lokasi pengambilan"></textarea></div>
+  <div class="form-group"><label>Catatan Tambahan (Opsional)</label><textarea id="notes" rows="2" placeholder="Contoh: Jangan terlalu pedas..."></textarea></div>
+  <button class="checkout" onclick="checkout()"><span>📱 PESAN SEKARANG VIA WHATSAPP</span></button></div>
+</section>
+
+<footer><div class="logo">SEVEN<span>ANA.</span></div><p style="margin-top:12px">© 2026 SEVENANA - Banana Pop. All Rights Reserved.</p><p style="margin-top:6px">Crispy Outside, Happy Inside! 🍌</p></footer>
+
+<script>
+const WHATSAPP_NUMBERS = {
+  admin1: "6281339252045",
+  admin2: "6285239194107",
+  admin3: "6281338952187"
+};
+let cart = [];
+const formatRupiah = number => "Rp" + number.toLocaleString("id-ID");
+function chooseProduct(type){document.getElementById("product").value=type;updateForm();document.getElementById("pesan").scrollIntoView({behavior:"smooth"});}
+function updateForm(){const product=document.getElementById("product").value;const crispy=document.getElementById("crispyOptions");const geprek=document.getElementById("geprekOptions");crispy.style.display=product==="crispy"?"block":"none";geprek.style.display=product==="geprek"?"block":"none";if(product==="crispy"){const price=Number(document.getElementById("package").value);const toppingCount=price===5000?1:price===10000?2:4;document.getElementById("toppingLabel").innerText="Pilih "+toppingCount+" Topping";document.getElementById("sauceGroup").style.display=price===5000?"none":"block";document.querySelectorAll("#toppings input").forEach(input=>{input.checked=false;input.disabled=false;});document.getElementById("preview").innerText=formatRupiah(price);}else{document.getElementById("preview").innerText=formatRupiah(5000);}}
+document.querySelectorAll("#toppings input").forEach(input=>{input.addEventListener("change",function(){const price=Number(document.getElementById("package").value);const limit=price===5000?1:price===10000?2:4;const selected=document.querySelectorAll("#toppings input:checked");if(selected.length>limit){this.checked=false;alert("Paket ini hanya bisa memilih "+limit+" topping!");}});});
+function addToCart(){const product=document.getElementById("product").value;const quantity=Number(document.getElementById("quantity").value);if(!Number.isInteger(quantity)||quantity<1||quantity>100){alert("Jumlah porsi harus antara 1 sampai 100.");return;}let item={};if(product==="crispy"){const price=Number(document.getElementById("package").value);const toppings=[...document.querySelectorAll("#toppings input:checked")].map(x=>x.value);const limit=price===5000?1:price===10000?2:4;if(toppings.length!==limit){alert("Silakan pilih tepat "+limit+" topping!");return;}const sauce=price===5000?"Tanpa pilihan saus":document.getElementById("sauce").value;item={name:"Banana Pop Crispy",detail:"Saus: "+sauce+" | Topping: "+toppings.join(", "),price:price,quantity:quantity};}else{item={name:"Pisang Geprek Asin Pedas",detail:"Level: "+document.getElementById("spice").value,price:5000,quantity:quantity};}cart.push(item);renderCart();alert("Pesanan berhasil ditambahkan ke keranjang! 🍌");document.getElementById("quantity").value=1;}
+function renderCart(){const container=document.getElementById("cartItems");if(cart.length===0){container.innerHTML='<div class="empty">Keranjang masih kosong 🍌</div>';}else{container.innerHTML=cart.map((item,index)=>`<div class="cart-item"><div><strong>${item.name}</strong><p style="color:#887966;margin-top:5px">${item.detail}</p><p>${item.quantity} x ${formatRupiah(item.price)}</p></div><div style="text-align:right"><strong>${formatRupiah(item.price*item.quantity)}</strong><br><br><button onclick="removeItem(${index})">Hapus ✕</button></div></div>`).join("");}const total=cart.reduce((sum,item)=>sum+item.price*item.quantity,0);const count=cart.reduce((sum,item)=>sum+item.quantity,0);document.getElementById("grandTotal").innerText=formatRupiah(total);document.getElementById("cartCount").innerText=count;}
+function removeItem(index){cart.splice(index,1);renderCart();}
+function checkout(){if(cart.length===0){alert("Keranjang masih kosong!");return;}const name=document.getElementById("customer").value.trim();const address=document.getElementById("address").value.trim();const notes=document.getElementById("notes").value.trim();if(!name||!address){alert("Mohon isi nama dan alamat/lokasi pengambilan!");return;}const total=cart.reduce((sum,item)=>sum+item.price*item.quantity,0);let message="🍌 *PESANAN SEVENANA - BANANA POP* 🍌\n\n";message+="Nama: "+name+"\n";message+="Lokasi: "+address+"\n\n";message+="*DETAIL PESANAN:*\n";cart.forEach((item,index)=>{message+="\n"+(index+1)+". "+item.name+"\n";message+="   "+item.detail+"\n";message+="   Jumlah: "+item.quantity+" porsi\n";message+="   Harga: "+formatRupiah(item.price*item.quantity)+"\n";});message+="\n*TOTAL: "+formatRupiah(total)+"*\n";if(notes){message+="\nCatatan: "+notes;}message+="\n\nTerima kasih! Saya ingin memesan produk Sevenana.";const selectedAdmin=document.getElementById("waAdmin").value;const targetNumber=WHATSAPP_NUMBERS[selectedAdmin];const url="https://wa.me/"+targetNumber+"?text="+encodeURIComponent(message);window.open(url,"_blank");}
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("show");}});},{threshold:0.12});document.querySelectorAll(".reveal").forEach(element=>{observer.observe(element);});updateForm();renderCart();
+</script>
+</body>
+</html>
